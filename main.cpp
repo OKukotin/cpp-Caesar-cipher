@@ -1,33 +1,30 @@
 #include <iostream>
 #include <string>
 
-#define TEXT_SIZE 100
-
-char getEncryptedSymbol(char symbol, int shift){
-    for (char i = 'a'; i <= 'z'; i++) {
-        std::cout << i << '\n';
-    }
+char getEncryptedASCIISymbol(char symbol, const int shift){
+    return char(int(symbol) + shift);
 }
 
 int main(int argc, char const *argv[]) {
-    string input;
+    std::string input;
     int shift;
     bool method;
-    
-    std::cout << "Choice the operation (1 - encrypt, 0 - decrypt)" << '\n';
-    std::cin >> method;
 
-    std::cout << "Enter the size of shift (positive integer): " << '\n';
+    std::cout << std::endl << "Enter the size of shift (positive integer): ";
     std::cin >> shift;
 
-    std::cout << "Enter the text you want to encrypt (on English): ";
-    std::cin.getline(input, TEXT_SIZE);
+    std::cout << "Choice the operation (1 - encrypt, 0 - decrypt): ";
+    std::cin >> method;
+    shift = (method) ? shift : -shift;
+
+    std::cout << "Enter the text: ";
+    std::cin.ignore();
+    getline(std::cin, input);
 
     for (int i = 0; i < input.size(); i++) {
-        if (method) {
-            getEncryptedSymbol()
-        }
+        input[i] = getEncryptedASCIISymbol(input[i], shift);
     }
-    std::cout << std::endl << "Encypted text: " << input << '\n';
+    std::string endMessage = (method) ? "Encypted text: " : "Decrypted text: ";
+    std::cout << std::endl << endMessage << input << '\n';
     return 0;
 }
