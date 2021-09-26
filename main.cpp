@@ -1,11 +1,15 @@
 #include <iostream>
 #include <string>
 
+#define a int('a')
+#define A int('A')
+
 char getEncryptedASCIISymbol(char symbol, const int shift) {
     int symbolCode = (int(symbol) + shift);
-    // if (symbolCode) {
-    //     /* code */
-    // }
+    // TODO: add a mechanism of non-going beyond the characters of the alphabet
+    if (symbolCode < a || symbolCode > a + 25) {
+        /* code */
+    }
     return char(symbolCode);
 }
 
@@ -26,8 +30,6 @@ int main(int argc, char const *argv[]) {
     getline(std::cin, input);
     const int inputSize = input.size();
 
-    const int a = int('a');
-    const int A = int('A');
     for (int i = 0; i < inputSize; i++) {
         const int current = int(input[i]);
         if (current >= a && current <= a + 25
