@@ -2,11 +2,11 @@
 #include <string>
 #include <cctype>
 
-unsigned char getEncryptedASCIISymbol(unsigned char symbol, const int shift) {
+// TODO: add a mechanism of non-going beyond the printable characters of ASCII
+char getEncryptedASCIISymbol(unsigned char symbol, const int shift) {
     int symbolCode = int(symbol) + shift;
-    // TODO: add a mechanism of non-going beyond the printable characters of ASCII
     while(!isprint(symbolCode)) {
-        std::cout << "loop" << '\n';
+        symbolCode -= symbolCode % 16;
     }
     return char(symbolCode);
 }
